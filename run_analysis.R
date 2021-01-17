@@ -117,7 +117,7 @@ data$Activity %>% str_replace_all(c("1" = "Walking",
 ### Produce Tidy data frame showing means of measure by Activity
 
 tidy <- data %>% 
-  group_by(Activity) %>% 
-  summarise_at(vars(2:67), mean)
+  group_by(Subject, Activity) %>% 
+  summarise_all(funs(mean))
 
-write.table(tidy, file = "tidy.txt")
+write.table(tidy, file = "tidy.txt", row.names = FALSE)
